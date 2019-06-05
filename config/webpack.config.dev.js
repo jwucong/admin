@@ -3,34 +3,19 @@ const webpack = require('webpack')
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./webpack.config.base.js');
-
+const mode = 'development'
 
 module.exports = merge(baseConfig, {
-  mode: "development",
-  devtool: "cheap-module-source-map",
-  devServer: {
-    contentBase: baseConfig.output.path,
-    compress: false,
-    publicPath: "/",
-    host: 'localhost',
-    port: 2840,
-    proxy: {},
-    clientLogLevel: 'error',
-    stats: 'errors-only',
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    open: true,
-    quiet: true,
-    overlay: {
-      errors: true,
-      warnings: false
-    }
+  mode,
+  devtool: 'cheap-module-source-map',
+  output: {
+    publicPath: '/',
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify(mode)
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })

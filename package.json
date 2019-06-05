@@ -22,7 +22,8 @@
   "homepage": "https://github.com/jwucong/admin#readme",
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

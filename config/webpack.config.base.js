@@ -1,22 +1,16 @@
 const path = require('path');
-
-const resolve = dir => path.join(__dirname, '..', dir || '')
-
-const entryFile = resolve('src/index.js')
-const outputDir = resolve('dist')
+const root = dir => path.join(__dirname, '..', dir || '')
+const entryFile = root('src/index.js')
+const outputDir = root('dist')
 
 module.exports = {
   entry: {
-    app: entryFile
+    app: ["react-hot-loader/patch", entryFile]
   },
   output: {
-    // path: 输出路径
     path: outputDir,
-    // filename: 资源输出路径
-    filename: 'static/js/[name].[contenthash].js',
-    chunkFilename: 'static/js/chunk.[name].[contenthash].js',
-    // publicPath: 相对于打包后的index.html文件的静态资源路径
-    publicPath: "./",
+    filename: 'static/js/[name].[hash].js',
+    chunkFilename: 'static/js/chunk.[name].[hash].js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -29,13 +23,13 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        include: [resolve('src')],
+        include: [root('src')],
         exclude: /node_modules/
       },
       {
         test: /\.s[ac]ss$/,
         loader: 'sass-loader',
-        include: [resolve('src')],
+        include: [root('src')],
         exclude: /node_modules/
       }
     ]
