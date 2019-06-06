@@ -5,7 +5,7 @@ const AnalyzerPlugin = require('webpack-bundle-analyzer')
 const developmentConfig = require('./webpack.config.dev')
 const productionConfig = require('./webpack.config.prod')
 
-const commandLineArgs = process.argv.slice(2)
+const commandLineArgs = process.argv.slice(2).map(item => item.toLocaleLowerCase())
 const env = commandLineArgs[0] || 'development'
 const isProduction = env === 'production'
 const analyzer = commandLineArgs.indexOf('analyzer') !== -1
@@ -40,7 +40,7 @@ const runDevServer = () => {
     hot: true,
     inline: true,
     open: true,
-    quiet: false,
+    quiet: true,
     overlay: {
       errors: true,
       warnings: false

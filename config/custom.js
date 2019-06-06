@@ -11,5 +11,7 @@ module.exports = {
       autoOpenBrowser: true,
     },
   },
-  production: {}
+  production: {
+
+  }
 }

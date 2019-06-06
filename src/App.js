@@ -1,2 +1,11 @@
 import React from 'react'
-export default () => <div>Hello Tesla...</div>
+import { hot } from 'react-hot-loader/root';
+import Children from './Children'
+
+export default hot(() => (
+  <div>
+    this is app component
+    <div>---</div>
+    <Children></Children>
+  </div>
+))

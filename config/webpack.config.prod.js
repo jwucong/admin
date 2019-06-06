@@ -8,7 +8,7 @@ const mode = 'production'
 module.exports = merge(baseConfig, {
   mode,
   output: {
-    publicPath: '/',
+    publicPath: '',
   },
   devtool: 'source-map',
   plugins: [

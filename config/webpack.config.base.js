@@ -5,7 +5,7 @@ const outputDir = root('dist')
 
 module.exports = {
   entry: {
-    app: ["react-hot-loader/patch", entryFile]
+    app: entryFile
   },
   output: {
     path: outputDir,
