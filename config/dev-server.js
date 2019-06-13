@@ -25,7 +25,6 @@ const serverConfig = {
   publicPath: config.output.publicPath,
   host: getLocalIP(),
   port: 8080,
-  proxy: {},
   compress: false,
   clientLogLevel: 'error',
   // stats: 'errors-only',
@@ -40,24 +39,13 @@ const serverConfig = {
     errors: true,
     warnings: false
   },
+  proxy: {},
 }
 
 process.env.NODE_ENV = 'development'
 spinner.start()
 
 const compiler = webpack(config)
-
-// const watching = compiler.watch({
-//   aggregateTimeout: 300,
-//   poll: false,
-//   'info-verbosity': 'verbose'
-// }, (err, stats) => {
-//   if(err) {
-//     throw err
-//   }
-//   // console.log(chalk.cyan('successfully'))
-// });
-
 const server = new WebpackDevServer(compiler, serverConfig);
 
 server.listen(serverConfig.port, serverConfig.host, err => {

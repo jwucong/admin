@@ -1,14 +1,12 @@
 const path = require('path');
-const root = dir => path.join(__dirname, '..', dir || '')
-const entryFile = root('src/index.js')
-const outputDir = root('dist')
+const resolve = dir => path.join(__dirname, '..', dir || '')
 
 module.exports = {
   entry: {
-    app: entryFile
+    app: resolve('src/index.js')
   },
   output: {
-    path: outputDir,
+    path: resolve('dist'),
     filename: 'static/js/[name].[hash].js',
     chunkFilename: 'static/js/chunk.[name].[hash].js',
   },
@@ -23,14 +21,24 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        include: [root('src')],
+        include: [resolve('src')],
         exclude: /node_modules/
       },
       {
-        test: /\.s[ac]ss$/,
-        loader: 'sass-loader',
-        include: [root('src')],
-        exclude: /node_modules/
+        test: /\.(bmp|png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 5120,
+          name: 'static/images/[name].[hash:8].[ext]',
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 5120,
+          name: 'static/images/[name].[hash:8].[ext]',
+        }
       }
     ]
   }

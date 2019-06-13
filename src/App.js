@@ -1,11 +1,14 @@
 import React from 'react'
+import Layout from './components/Layout'
 import { hot } from 'react-hot-loader/root';
-import Children from './Children'
 
-export default hot(() => (
+
+const App = () => (
   <div>
     this is app component
-    <div>---</div>
-    <Children></Children>
+    <div>=====</div>
+    <Layout />
   </div>
-))
+)
+
+export default hot(App)
