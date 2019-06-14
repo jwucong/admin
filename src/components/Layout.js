@@ -1,4 +1,5 @@
 import React from 'react'
+import './Layout.scss'
 
 export default class Layout extends React.Component {
   constructor(props) {
@@ -21,9 +22,8 @@ export default class Layout extends React.Component {
   }
 
   counter() {
-    this.setState({
-      count: ++this.state.count
-    })
+    const count = this.state.count + 1
+    this.setState({count})
   }
 
 }

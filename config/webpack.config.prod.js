@@ -1,10 +1,25 @@
+const path = require('path');
 const webpack = require('webpack')
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const baseConfig = require('./webpack.config.base.js');
+
+const resolve = dir => path.join(__dirname, '..', dir || '')
+
+const styleLoaders = loaderNames => {
+  const output = [MiniCssExtractPlugin.loader]
+  const loaders = loaderNames.map(name => ({
+    loader: `${name}-loader`,
+    options: {
+      sourceMap: true
+    }
+  }))
+  return output.concat(loaders)
+}
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -14,21 +29,21 @@ module.exports = merge(baseConfig, {
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        include: [resolve('src')],
+        exclude: /node_modules/,
+        options: {
+          sourceMap: true
+        }
+      },
+      {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-        ]
+        use: styleLoaders(['css', 'postcss'])
       },
       {
         test: /\.(sass|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
+        use: styleLoaders(['css', 'postcss', 'sass'])
       }
     ]
   },
@@ -36,7 +51,21 @@ module.exports = merge(baseConfig, {
   optimization: {
     runtimeChunk: true,
     minimizer: [
-      new TerserPlugin()
+      new TerserPlugin({
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          map: {
+            // `inline: false` forces the sourcemap to be output into a
+            // separate file
+            inline: false,
+            // `annotation: true` appends the sourceMappingURL to the end of
+            // the css file, helping the browser find the sourcemap
+            annotation: true,
+          }
+        }
+      })
     ]
   },
   plugins: [
