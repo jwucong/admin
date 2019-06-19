@@ -1,0 +1,18 @@
+.layout {
+  position: relative;
+  .menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 300px;
+    height: 100%;
+    border-right: 1px solid #eee;
+    background-color: #f7f7f7;
+  }
+  .main-container {
+    position: relative;
+    width: auto;
+    margin-left: 300px;
+  }
+}

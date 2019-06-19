@@ -49,7 +49,13 @@ module.exports = merge(baseConfig, {
   },
   devtool: 'source-map',
   optimization: {
-    runtimeChunk: true,
+    runtimeChunk: {
+      name: 'runtime'
+    },
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '.'
+    },
     minimizer: [
       new TerserPlugin({
         sourceMap: true
@@ -85,8 +91,8 @@ module.exports = merge(baseConfig, {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[hash].css',
-      chunkFilename: 'static/css/[id].[hash].css',
+      filename: 'static/css/[name].[hash:8].css',
+      chunkFilename: 'static/css/[id].[hash:8].css',
     })
   ]
 })

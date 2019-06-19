@@ -25,7 +25,7 @@ const serverConfig = {
   publicPath: config.output.publicPath,
   host: getLocalIP(),
   port: 8080,
-  compress: false,
+  compress: true,
   clientLogLevel: 'error',
   // stats: 'errors-only',
   historyApiFallback: {
