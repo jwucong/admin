@@ -1,10 +1,14 @@
-import React from 'react'
-import Layout from './components/layout'
-import {BrowserRouter} from "react-router-dom";
-import { hot } from 'react-hot-loader/root';
-import './App.scss'
-import Router from './router'
 
-const App = () => <Layout />
+import Router from './routes'
+import {BrowserRouter} from 'react-router-dom'
+
+import {hot} from 'react-hot-loader/root';
+import './App.scss'
+
+const App = () => (
+  <BrowserRouter>
+    <Router />
+  </BrowserRouter>
+)
 
 export default hot(App)

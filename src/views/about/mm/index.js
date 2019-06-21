@@ -1,12 +1,15 @@
 import React from 'react'
 
-export default class About extends React.Component {
+
+export default class Index extends React.Component {
     constructor(props) {
         super(props)
         this.state = {}
     }
 
     render() {
-        return <div>this is About page</div>
+        return (
+            <div className='mm'>Mm</div>
+        )
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function asyncComponent(importComponent) {
+export default function asyncComponent(promise) {
   class AsyncComponent extends React.Component {
     constructor(props) {
       super(props)
@@ -10,7 +10,7 @@ export default function asyncComponent(importComponent) {
     }
 
     async componentDidMount() {
-      const module = await importComponent()
+      const module = await promise
       this.setState({
         component: module.default
       })
