@@ -1,14 +1,13 @@
-
-import Router from './routes'
-import {BrowserRouter} from 'react-router-dom'
-
-import {hot} from 'react-hot-loader/root';
-import './App.scss'
+import React from 'react';
+import { hot } from 'react-hot-loader/root';
+import { BrowserRouter } from 'react-router-dom';
+import { LayoutRouter } from './routes';
+import './App.scss';
 
 const App = () => (
-  <BrowserRouter>
-    <Router />
-  </BrowserRouter>
-)
+	<BrowserRouter>
+		<LayoutRouter />
+	</BrowserRouter>
+);
 
-export default hot(App)
+export default hot(App);

@@ -8,8 +8,8 @@
     "dev": "node config/dev-server.js",
     "build": "node config/build.js",
     "analysis": "node config/build.js analysis",
-    "prettier": "prettier --list-different \"src/**/*.js\"",
-    "pre-commit": "echo \"pre-commit\"",
+    "prettier": "prettier --write \"src/**/*.js\"",
+    "pre-commit": "npm run prettier",
     "pre-push": "echo \"pre-push\""
   },
   "repository": {

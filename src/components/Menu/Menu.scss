@@ -1,0 +1,23 @@
+.menu {
+  a {
+    display: block;
+    padding: 0 10px;
+    text-decoration: none;
+    line-height: 38px;
+    color: #333;
+
+    &:link,
+    &:visited,
+    &:active {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      background-color: #eee;
+    }
+    &.active {
+      color: #fff;
+      background-color: dodgerblue;
+    }
+  }
+}

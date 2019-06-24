@@ -1,35 +1,36 @@
-import React from 'react'
+import React from 'react';
 
 export default class Home extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
+	constructor(props) {
+		super(props);
+		this.state = {};
+    this.handleSignIn = this.handleSignIn.bind(this);
+	}
 
-  render() {
-    return (
-      <div>
-        <div>this is home page</div>
-        <button onClick={this.navTo.bind(this)}>nfjnwj</button>
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div>
+        <h1>this is Home page</h1>
+        <button onClick={this.handleSignIn}>Sign In</button>
+			</div>
+		);
+	}
 
-  componentWillMount() {
-    console.log('componentWillMount props: %o', this.props)
-  }
+	componentWillMount() {
+		console.log('componentWillMount props: %o', this.props);
+	}
 
-  componentDidMount() {
-    console.log('componentDidMount props: %o', this.props)
-  }
+	componentDidMount() {
+		console.log('componentDidMount props: %o', this.props);
+	}
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    console.log('nextProps: %o', nextProps)
-    console.log('nextContext: %o', nextContext)
-    console.log('props: %o', this.props)
-  }
-
-  navTo(path) {
-    this.props.history.push('/about')
+	componentWillReceiveProps(nextProps, nextContext) {
+		console.log('nextProps: %o', nextProps);
+		console.log('nextContext: %o', nextContext);
+		console.log('props: %o', this.props);
+	}
+  handleSignIn() {
+    const { history } = this.props;
+    history.push('/signIn');
   }
 }
