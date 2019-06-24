@@ -52,8 +52,8 @@ const layoutRoutes = [
 		key: '/',
 		from: '/',
 		to: '/view/home',
-    exact: true
-  }
+		exact: true
+	}
 ].concat(toNotFoundRoute);
 
 const viewRoutes = [
