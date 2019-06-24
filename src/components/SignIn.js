@@ -23,9 +23,8 @@ export default class SignIn extends React.Component {
 		history.push('/view3/home');
 	}
 
-  handleSignUp() {
-    const { history } = this.props;
-    history.push('/signUp');
-  }
-
+	handleSignUp() {
+		const { history } = this.props;
+		history.push('/signUp');
+	}
 }

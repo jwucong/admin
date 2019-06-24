@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './Menu.scss'
+import './Menu.scss';
 
 export default class Menu extends React.Component {
 	constructor(props) {
@@ -13,13 +13,19 @@ export default class Menu extends React.Component {
 			<div className='menu'>
 				<ul>
 					<li>
-						<NavLink activeClassName='active' to='/view/home'>home</NavLink>
+						<NavLink activeClassName='active' to='/view/home'>
+							home
+						</NavLink>
 					</li>
 					<li>
-						<NavLink activeClassName='active' to='/view/about'>about</NavLink>
+						<NavLink activeClassName='active' to='/view/about'>
+							about
+						</NavLink>
 					</li>
 					<li>
-						<NavLink activeClassName='active' to='/view/contact'>contact</NavLink>
+						<NavLink activeClassName='active' to='/view/contact'>
+							contact
+						</NavLink>
 					</li>
 				</ul>
 			</div>

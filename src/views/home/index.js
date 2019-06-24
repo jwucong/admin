@@ -4,14 +4,14 @@ export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
-    this.handleSignIn = this.handleSignIn.bind(this);
+		this.handleSignIn = this.handleSignIn.bind(this);
 	}
 
 	render() {
 		return (
 			<div>
-        <h1>this is Home page</h1>
-        <button onClick={this.handleSignIn}>Sign In</button>
+				<h1>this is Home page</h1>
+				<button onClick={this.handleSignIn}>Sign In</button>
 			</div>
 		);
 	}
@@ -29,8 +29,8 @@ export default class Home extends React.Component {
 		console.log('nextContext: %o', nextContext);
 		console.log('props: %o', this.props);
 	}
-  handleSignIn() {
-    const { history } = this.props;
-    history.push('/signIn');
-  }
+	handleSignIn() {
+		const { history } = this.props;
+		history.push('/signIn');
+	}
 }

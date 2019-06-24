@@ -29,30 +29,30 @@ const layoutRoutes = [
 		key: '/signin',
 		path: '/signin',
 		component: SignIn,
-		excat: true
+		exact: true
 	},
 	{
 		key: '/signup',
 		path: '/signup',
 		component: SignUp,
-		excat: true
+		exact: true
 	},
 	{
 		key: '/404',
 		path: '/404',
 		component: NotFound,
-		excat: true
+		exact: true
 	},
-  {
-    key: '/view',
-    path: '/view',
-    component: Layout
-  },
-  {
-    key: '/',
-    path: '/',
-    excat: true,
-    render: () => <Redirect to='/view/home'></Redirect>
+	{
+		key: '/view',
+		path: '/view',
+		component: Layout
+	},
+	{
+		key: '/',
+		from: '/',
+		to: '/view/home',
+    exact: true
   }
 ].concat(toNotFoundRoute);
 
