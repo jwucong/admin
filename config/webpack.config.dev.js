@@ -6,6 +6,18 @@ const baseConfig = require('./webpack.config.base.js');
 
 const resolve = dir => path.join(__dirname, '..', dir || '')
 
+const styleLoaders = (loaders = []) => {
+  const cssLoader = {
+    loader: 'css-loader',
+    options: {
+      importLoaders: loaders.length + 1
+    }
+  }
+  const output = ['style-loader', cssLoader, 'postcss-loader']
+  const others = loaders.map(name => `${name}-loader`)
+  return output.concat(others)
+}
+
 module.exports = merge(baseConfig, {
   mode: 'development',
   devtool: 'cheap-module-source-map',
@@ -17,31 +29,19 @@ module.exports = merge(baseConfig, {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
-          },
-          'postcss-loader'
-        ]
+        use: styleLoaders()
+      },
+      {
+        test: /\.less$/,
+        use: styleLoaders(['less'])
       },
       {
         test: /\.(sass|scss)$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2
-            }
-          },
-          'postcss-loader',
-          'sass-loader'
-        ],
-        sideEffects: true
+        use: styleLoaders(['sass'])
+      },
+      {
+        test: /\.(stylus|styl)$/,
+        use: styleLoaders(['stylus'])
       }
     ]
   },

@@ -10,6 +10,8 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<div>
+        <div className="red">red</div>
+        <div className="green">green</div>
 				<h1>this is Home page</h1>
 				<button onClick={this.handleSignIn}>Sign In</button>
 			</div>

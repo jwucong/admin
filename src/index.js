@@ -6,6 +6,6 @@ import App from './App';
 
 ReactDom.render(<App />, document.getElementById('app'));
 
-// if (module.hot) {
-//   module.hot.accept()
-// }
+if (module.hot) {
+  module.hot.accept()
+}

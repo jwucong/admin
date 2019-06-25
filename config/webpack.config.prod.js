@@ -10,15 +10,22 @@ const baseConfig = require('./webpack.config.base.js');
 
 const resolve = dir => path.join(__dirname, '..', dir || '')
 
-const styleLoaders = loaderNames => {
-  const output = [MiniCssExtractPlugin.loader]
-  const loaders = loaderNames.map(name => ({
+const styleLoaders = (loaders = []) => {
+  const cssLoader = {
+    loader: 'css-loader',
+    options: {
+      importLoaders: loaders.length + 1,
+      sourceMap: true
+    }
+  }
+  const output = [MiniCssExtractPlugin.loader, cssLoader]
+  const others = ['postcss'].concat(loaders).map(name => ({
     loader: `${name}-loader`,
     options: {
       sourceMap: true
     }
   }))
-  return output.concat(loaders)
+  return output.concat(others)
 }
 
 module.exports = merge(baseConfig, {
@@ -39,11 +46,19 @@ module.exports = merge(baseConfig, {
       },
       {
         test: /\.css$/,
-        use: styleLoaders(['css', 'postcss'])
+        use: styleLoaders()
+      },
+      {
+        test: /\.less$/,
+        use: styleLoaders(['less'])
       },
       {
         test: /\.(sass|scss)$/,
-        use: styleLoaders(['css', 'postcss', 'sass'])
+        use: styleLoaders(['sass'])
+      },
+      {
+        test: /\.(stylus|styl)$/,
+        use: styleLoaders(['stylus'])
       }
     ]
   },
