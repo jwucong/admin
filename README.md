@@ -12,14 +12,19 @@
         // or
         npm run dev
       ```
+      
+   2. **格式化代码**
+      ```shell
+         npm run format
+      ```
 
-   2. **构建**
+   3. **构建**
    
       ```shell
         npm run build
       ```
 
-   3. **分析**
+   4. **分析**
       ```shell
         npm run analysis
       ```
