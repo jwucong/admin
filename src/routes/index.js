@@ -1,10 +1,9 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import asyncComponent from '../components/AsyncComponent';
 import importedComponent from 'react-imported-component';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-const getAsyncComponent = path => {
-	return importedComponent(() => import(`../components/${path}`));
+const getAsyncComponent = dir => {
+	return importedComponent(() => import(`../components/${dir}`));
 };
 
 const getAsyncView = path => {
@@ -12,7 +11,7 @@ const getAsyncView = path => {
 };
 
 const Layout = getAsyncComponent('Layout');
-const SignIn = getAsyncComponent('SignIn');
+const SignIn = getAsyncComponent('signIn');
 const SignUp = getAsyncComponent('SignUp');
 const NotFound = getAsyncComponent('NotFound');
 

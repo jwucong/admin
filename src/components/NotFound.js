@@ -7,13 +7,13 @@ export default function NotFound() {
       <div className="left">
         <div className="center white">
           <div className='face'>:(</div>
-          <p className='text'>Oh, Just Chilling!</p>
+          <p className='text'>Oh, Just Chilling</p>
         </div>
       </div>
       <div className="right">
         <div className="center pink">
           <div className="face">4 0 4</div>
-          <p className='text'>Page Not Found!</p>
+          <p className='text'>Page Not Found</p>
         </div>
       </div>
       <div className="btn">

@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu from './Menu';
-import Header from './Header';
+import Menu from './menu';
+import Header from './header';
 import { ViewRouter } from '../routes';
 import './Layout.scss';
 
@@ -16,10 +16,6 @@ export default class Layout extends React.Component {
 		return (
 			<div className='layout'>
         <Header></Header>
-
-				{/*<div className='menu-container'>*/}
-				{/*	<Menu />*/}
-				{/*</div>*/}
 				<Menu show={this.state.showMenu} />
 				<div className='main-container'>
 					<ViewRouter />
