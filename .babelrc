@@ -9,11 +9,10 @@
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-syntax-dynamic-import",
     [
-      "import",
+      "babel-plugin-import",
       {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": "css"
+        "libraryName": "@material-ui",
+        "libraryDirectory": "core"
       }
     ]
   ]

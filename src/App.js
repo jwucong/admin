@@ -1,15 +1,17 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
-import { BrowserRouter } from 'react-router-dom';
-import { LayoutRouter } from './routes';
-import './assets/style/style.less';
-import './assets/style/test.styl';
-import './assets/style/test.stylus';
+import {hot} from 'react-hot-loader/root';
+import {BrowserRouter} from 'react-router-dom';
+import {LayoutRouter} from './routes';
+import Theme from './components/MaterialUiTheme'
+import './assets/style/common.scss'
+
 
 const App = () => (
-	<BrowserRouter>
-		<LayoutRouter />
-	</BrowserRouter>
+  <BrowserRouter>
+    <Theme>
+      <LayoutRouter/>
+    </Theme>
+  </BrowserRouter>
 );
 
 export default hot(App);

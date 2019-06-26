@@ -1,13 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import asyncComponent from '../components/AsyncComponent';
+import importedComponent from 'react-imported-component';
 
 const getAsyncComponent = path => {
-	return asyncComponent(() => import(`../components/${path}`));
+	return importedComponent(() => import(`../components/${path}`));
 };
 
 const getAsyncView = path => {
-	return asyncComponent(() => import(`../views/${path}`));
+	return importedComponent(() => import(`../views/${path}`));
 };
 
 const Layout = getAsyncComponent('Layout');
@@ -19,7 +20,7 @@ const Home = getAsyncView('home');
 const About = getAsyncView('about');
 const Contact = getAsyncView('contact');
 
-const toNotFoundRoute = {
+const notFoundRoute = {
 	key: 'TO-NOT-FOUND-ROUTE',
 	to: '/404'
 };
@@ -54,7 +55,7 @@ const layoutRoutes = [
 		to: '/view/home',
 		exact: true
 	}
-].concat(toNotFoundRoute);
+].concat(notFoundRoute);
 
 const viewRoutes = [
 	{
@@ -75,7 +76,7 @@ const viewRoutes = [
 		component: Contact,
 		exact: true
 	}
-].concat(toNotFoundRoute);
+].concat(notFoundRoute);
 
 const createRouter = routes => {
 	const routeList = routes.map(route => {
