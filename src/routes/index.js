@@ -18,6 +18,7 @@ const NotFound = getAsyncComponent('NotFound');
 const Home = getAsyncView('home');
 const About = getAsyncView('about');
 const Contact = getAsyncView('contact');
+const Article = getAsyncView('article');
 
 const notFoundRoute = {
 	key: 'TO-NOT-FOUND-ROUTE',
@@ -43,6 +44,12 @@ const layoutRoutes = [
 		component: NotFound,
 		exact: true
 	},
+  {
+    key: '/article:id',
+    path: '/article:id',
+    component: Article,
+    // exact: true
+  },
 	{
 		key: '/view',
 		path: '/view',

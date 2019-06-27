@@ -15,8 +15,8 @@ export default class Layout extends React.Component {
 	render() {
 		return (
 			<div className='layout'>
-        <Header></Header>
-				<div className='main-container'>
+				<Header></Header>
+				<div className='body'>
 					<ViewRouter />
 				</div>
 			</div>

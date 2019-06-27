@@ -28,7 +28,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <div className='header'>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar variant="dense">
             <IconButton
               edge="start"

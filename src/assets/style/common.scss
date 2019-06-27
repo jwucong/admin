@@ -20,12 +20,21 @@ body {
 
 a {
   text-decoration: none;
+
   &:link,
   &:visited,
   &:hover,
   &:active {
     text-decoration: none;
   }
+}
+
+.clearfix:after {
+  content: '';
+  display: table;
+  height: 0;
+  visibility: hidden;
+  clear: both;
 }
 
 .not-found {
@@ -60,28 +69,35 @@ a {
     width: 50%;
     height: 100%;
   }
+
   .left {
     left: 0;
     color: #fff;
     background-color: #de92ad;
   }
+
   .right {
     right: 0;
     background-color: #fff;
   }
+
   .face {
     font-size: 100px;
     margin-bottom: 20px;
   }
+
   .text {
     font-size: 18px;
   }
+
   .left .face {
     font-family: "Microsoft YaHei";
   }
+
   .right .face {
     font-family: Arial;
   }
+
   .btn {
     position: absolute;
     left: 50%;
@@ -106,12 +122,14 @@ a {
       width: 50%;
       height: 100%;
     }
+
     .pink {
       left: 0;
       text-align: right;
       background-color: #fff;
       letter-spacing: 1px;
     }
+
     .white {
       right: 0;
       text-align: left;

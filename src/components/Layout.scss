@@ -1,5 +1,8 @@
 .layout {
   position: relative;
+  box-sizing: border-box;
+  padding-top: 48px;
+  overflow: auto;
   //.menu-container {
   //  position: fixed;
   //  top: 0;
@@ -10,7 +13,7 @@
   //  background-color: #f7f7f7;
   //  overflow: auto;
   //}
-  .main-container {
+  .body {
     //margin-left: 200px;
   }
 }
