@@ -1,29 +1,41 @@
 import React from 'react';
 import classNames from 'classNames'
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux'
+import {createMuiTheme} from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import './menu.scss'
+import {blue} from "@material-ui/core/colors";
+
+const menuAppBarTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: blue[700]
+    },
+  },
+});
 
 const Menu = props => {
   const classList = classNames({
     menu: true,
     show: props.show
   })
+
   return (
     <div className={classList}>
+      <div className="topbar">
+        <IconButton
+          className="close-btn"
+          edge='end'
+          onClick={props.toggle}>
+          <CloseIcon></CloseIcon>
+        </IconButton>
+      </div>
       <Link to='/signin'>Sign In</Link>
     </div>
   )
 }
 
-const mapStateToProps = (a, b, c, d) => {
-  console.group('mapStateToProps')
-  console.log('a: %o', a)
-  console.log('b: %o', b)
-  console.log('c: %o', c)
-  console.log('d: %o', d)
-  console.groupEnd()
-  return {...a}
-}
 
-export default connect(mapStateToProps)(Menu)
+export default Menu

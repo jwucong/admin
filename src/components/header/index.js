@@ -8,18 +8,21 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import './Header.scss'
+import Menu from "../menu";
 
 
 export default class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      show: false
     }
   }
 
-  handleProfileMenuOpen = () => {
-
+  handleToggleMenu = () => {
+    const show = !this.state.show
+    this.setState({show})
+    console.log(show)
   }
 
   render() {
@@ -27,14 +30,9 @@ export default class Header extends React.Component {
       <div className='header'>
         <AppBar position="static">
           <Toolbar variant="dense">
-
-            {/*<Typography variant="h6" color="inherit">*/}
-            {/*  你好啊*/}
-            {/*</Typography>*/}
             <IconButton
               edge="start"
-              color="inherit"
-              onClick={this.handleProfileMenuOpen}>
+              color="inherit">
               <AccountCircle />
             </IconButton>
             <IconButton color="inherit">
@@ -42,11 +40,16 @@ export default class Header extends React.Component {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton className='menu-btn' edge="end" color="inherit">
+            <IconButton
+              className='menu-btn'
+              edge="end"
+              color="inherit"
+              onClick={this.handleToggleMenu}>
               <MenuIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
+        <Menu show={this.state.show} toggle={this.handleToggleMenu} />
       </div>
     )
   }
