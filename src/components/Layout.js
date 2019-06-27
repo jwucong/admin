@@ -8,14 +8,14 @@ export default class Layout extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      showMenu: false
-    };
+			showMenu: false
+		};
 	}
 
 	render() {
 		return (
 			<div className='layout'>
-        <Header></Header>
+				<Header></Header>
 				<Menu show={this.state.showMenu} />
 				<div className='main-container'>
 					<ViewRouter />
