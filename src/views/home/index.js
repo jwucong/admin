@@ -4,8 +4,12 @@ export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
-		this.handleSignIn = this.handleSignIn.bind(this);
 	}
+
+  handleSignIn = () => {
+    const { history } = this.props;
+    history.push('/signIn');
+  }
 
 	render() {
 		return (
@@ -18,21 +22,5 @@ export default class Home extends React.Component {
 		);
 	}
 
-	componentWillMount() {
-		console.log('componentWillMount props: %o', this.props);
-	}
 
-	componentDidMount() {
-		console.log('componentDidMount props: %o', this.props);
-	}
-
-	componentWillReceiveProps(nextProps, nextContext) {
-		console.log('nextProps: %o', nextProps);
-		console.log('nextContext: %o', nextContext);
-		console.log('props: %o', this.props);
-	}
-	handleSignIn() {
-		const { history } = this.props;
-		history.push('/signIn');
-	}
 }

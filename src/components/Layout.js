@@ -15,8 +15,7 @@ export default class Layout extends React.Component {
 	render() {
 		return (
 			<div className='layout'>
-				<Header></Header>
-				<Menu show={this.state.showMenu} />
+        <Header></Header>
 				<div className='main-container'>
 					<ViewRouter />
 				</div>
