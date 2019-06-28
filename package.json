@@ -9,7 +9,7 @@
     "build": "node config/build.js",
     "analysis": "node config/build.js analysis",
     "format": "prettier --write src/**/*.js",
-    "pre-commit": "npm run format"
+    "pre-commit": "npm run format && git add -u"
   },
   "repository": {
     "type": "git",

@@ -15,9 +15,6 @@ const SignIn = getAsyncComponent('signIn');
 const SignUp = getAsyncComponent('SignUp');
 const NotFound = getAsyncComponent('notFound');
 
-const Home = getAsyncView('home');
-const About = getAsyncView('about');
-const Contact = getAsyncView('contact');
 const Article = getAsyncView('article');
 const Dashboard = getAsyncView('dashboard');
 const UserManage = getAsyncView('userManage');
@@ -51,16 +48,16 @@ const layoutRoutes = [
 		component: NotFound,
 		exact: true
 	},
-  {
-    path: '/article/:id',
-    component: Article,
-    // exact: true
-  },
+	{
+		path: '/article/:id',
+		component: Article
+		// exact: true
+	},
 	{
 		path: '/view',
 		component: Layout
 	},
-  {
+	{
 		key: '/',
 		from: '/',
 		to: '/view/dashboard',
@@ -84,49 +81,49 @@ const viewRoutes = [
 		component: ArticleManage,
 		exact: true
 	},
-  {
+	{
 		path: '/view/categoryManage',
 		component: CategoryManage,
 		exact: true
 	},
-  {
-    path: '/view/tagManage',
-    component: TagManage,
-    exact: true
-  },
-  {
-    path: '/view/systemLogs',
-    component: SystemLogs,
-    exact: true
-  },
-  {
-    path: '/view/articleList',
-    component: ArticleList,
-    exact: true
-  },
-  {
-    path: '/view/newArticle',
-    component: NewArticle,
-    exact: true
-  },
-  {
-    path: '/view/drafts',
-    component: Drafts,
-    exact: true
-  },
-  {
-    path: '/view/trash',
-    component: Trash,
-    exact: true
-  }
+	{
+		path: '/view/tagManage',
+		component: TagManage,
+		exact: true
+	},
+	{
+		path: '/view/systemLogs',
+		component: SystemLogs,
+		exact: true
+	},
+	{
+		path: '/view/articleList',
+		component: ArticleList,
+		exact: true
+	},
+	{
+		path: '/view/newArticle',
+		component: NewArticle,
+		exact: true
+	},
+	{
+		path: '/view/drafts',
+		component: Drafts,
+		exact: true
+	},
+	{
+		path: '/view/trash',
+		component: Trash,
+		exact: true
+	}
 ].concat(notFoundRoute);
 
 const createRouter = routes => {
 	const routeList = routes.map(route => {
 		const redirect = Object.prototype.hasOwnProperty.call(route, 'to');
-		if(redirect) {
-		  return <Redirect {...route} />
-    }
+		if (redirect) {
+			return <Redirect {...route} />;
+		}
 		return <Route key={route.path} {...route} />;
 	});
 	return () => <Switch>{routeList}</Switch>;
