@@ -25,6 +25,10 @@ const ArticleManage = getAsyncView('articleManage');
 const CategoryManage = getAsyncView('categoryManage');
 const TagManage = getAsyncView('tagManage');
 const SystemLogs = getAsyncView('systemLogs');
+const ArticleList = getAsyncView('articleManage/articleList');
+const NewArticle = getAsyncView('articleManage/newArticle');
+const Drafts = getAsyncView('articleManage/drafts');
+const Trash = getAsyncView('articleManage/trash');
 
 const notFoundRoute = {
 	key: 'NOT-FOUND-ROUTE',
@@ -33,77 +37,86 @@ const notFoundRoute = {
 
 const layoutRoutes = [
 	{
-		key: '/signin',
 		path: '/signin',
 		component: SignIn,
 		exact: true
 	},
 	{
-		key: '/signup',
 		path: '/signup',
 		component: SignUp,
 		exact: true
 	},
 	{
-		key: '/404',
 		path: '/404',
 		component: NotFound,
 		exact: true
 	},
   {
-    key: '/article/:id',
     path: '/article/:id',
     component: Article,
     // exact: true
   },
 	{
-		key: '/view',
 		path: '/view',
 		component: Layout
 	},
-	{
+  {
 		key: '/',
 		from: '/',
-		to: '/view/home',
+		to: '/view/dashboard',
 		exact: true
 	}
 ].concat(notFoundRoute);
 
 const viewRoutes = [
 	{
-		key: '/view/dashboard',
 		path: '/view/dashboard',
 		component: Dashboard,
 		exact: true
 	},
 	{
-		key: '/view/userManage',
 		path: '/view/userManage',
 		component: UserManage,
 		exact: true
 	},
 	{
-		key: '/view/articleManage',
 		path: '/view/articleManage',
 		component: ArticleManage,
 		exact: true
 	},
   {
-		key: '/view/categoryManage',
 		path: '/view/categoryManage',
 		component: CategoryManage,
 		exact: true
 	},
   {
-    key: '/view/tagManage',
     path: '/view/tagManage',
     component: TagManage,
     exact: true
   },
   {
-    key: '/view/systemLogs',
     path: '/view/systemLogs',
     component: SystemLogs,
+    exact: true
+  },
+  {
+    path: '/view/articleList',
+    component: ArticleList,
+    exact: true
+  },
+  {
+    path: '/view/newArticle',
+    component: NewArticle,
+    exact: true
+  },
+  {
+    path: '/view/drafts',
+    component: Drafts,
+    exact: true
+  },
+  {
+    path: '/view/trash',
+    component: Trash,
     exact: true
   }
 ].concat(notFoundRoute);
@@ -111,7 +124,10 @@ const viewRoutes = [
 const createRouter = routes => {
 	const routeList = routes.map(route => {
 		const redirect = Object.prototype.hasOwnProperty.call(route, 'to');
-		return redirect ? <Redirect {...route} /> : <Route {...route} />;
+		if(redirect) {
+		  return <Redirect {...route} />
+    }
+		return <Route key={route.path} {...route} />;
 	});
 	return () => <Switch>{routeList}</Switch>;
 };

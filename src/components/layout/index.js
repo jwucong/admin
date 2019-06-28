@@ -13,14 +13,17 @@ export default class Layout extends React.Component {
   }
 
   render() {
+    console.log('layout render...')
     return (
       <div className='layout'>
         <Header></Header>
-        <div className="sidebar">
-          <Menu></Menu>
-        </div>
-        <div className="main-view">
-          <ViewRouter></ViewRouter>
+        <div className="body">
+          <div className="sidebar">
+            <Menu />
+          </div>
+          <div className="main-view">
+            <ViewRouter></ViewRouter>
+          </div>
         </div>
       </div>
     );

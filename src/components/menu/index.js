@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classNames'
-import {NavLink} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
+import menus from './config';
 
 import {makeStyles} from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -25,110 +26,77 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Nav = props => {
+const Icon = props => {
+  if (!props.icon) {
+    return null
+  }
   return (
-    <NavLink
-      to={props.link}
-      className='nav-item'
-      activeClassName='nav-active'>
-      <ListItem className={props.level} button>
-        <ListItemIcon className='nav-icon'>
-          {props.icon}
-        </ListItemIcon>
-        <ListItemText className='nav-text' primary={props.children}/>
-      </ListItem>
-    </NavLink>
+    <ListItemIcon className='nav-icon'>
+      {props.icon}
+    </ListItemIcon>
   )
 }
 
-const Menu = props => {
-  const classList = classNames({
-    menu: true,
-    show: props.show
-  })
-
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-
-  function handleClick() {
-    setOpen(!open);
-  }
-
+const LinkItem = props => {
   return (
-    <div className='menu'>
-      <List
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        className={classes.root}>
-        <Nav
-          icon={<SendIcon/>}
-          level='level1'
-          link='/view/dashboard'>
-          仪表盘
-        </Nav>
-        <Nav
-          icon={<SendIcon/>}
-          level='level1'
-          link='/view/userManage'>
-          用户管理
-        </Nav>
-        <Nav
-          icon={<SendIcon/>}
-          level='level1'
-          link='/view/articleManage'>
-          文章管理
-        </Nav>
-        <Nav
-          icon={<SendIcon/>}
-          level='level1'
-          link='/view/categoryManage'>
-          分类管理
-        </Nav>
-        <Nav
-          icon={<SendIcon/>}
-          level='level1'
-          link='/view/tagManage'>
-          标签管理
-        </Nav>
-        <Nav
-          icon={<SendIcon/>}
-          level='level1'
-          link='/view/systemLogs'>
-          系统日志
-        </Nav>
-        <ListItem className='level1' button>
-          <ListItemIcon>
-            <SendIcon/>
-          </ListItemIcon>
-          <ListItemText primary="Sent mail"/>
-        </ListItem>
+    <div className='menu-item'>
+      <NavLink to={props.path}>
         <ListItem button>
-          <ListItemIcon>
-            <DraftsIcon/>
-          </ListItemIcon>
-          <ListItemText primary="Drafts"/>
+          <Icon/>
+          <ListItemText primary={props.title}/>
         </ListItem>
-        <ListItem button onClick={handleClick}>
-          <ListItemIcon>
-            <InboxIcon/>
-          </ListItemIcon>
-          <ListItemText primary="Inbox"/>
-          {open ? <ExpandLess/> : <ExpandMore/>}
-        </ListItem>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <StarBorder/>
-              </ListItemIcon>
-              <ListItemText primary="Starred"/>
-            </ListItem>
-          </List>
-        </Collapse>
-      </List>
+      </NavLink>
     </div>
   )
 }
 
+const ExpandItem = props => {
+  const [expand, toggleExpand] = React.useState(false);
+  const handleClick = (event) => {
+    event.persist()
+    event.stopPropagation()
+    console.log(event)
+    toggleExpand(!expand)
+  };
+  const SubItem = () => {
+    return props.children.map(item => {
+      if (item.children) {
+        return <ExpandItem key={item.path} {...item} />
+      }
+      return <LinkItem key={item.path} {...item}/>
+    })
+  }
+  return (
+    <div className='menu-item'>
+      <ListItem button onClick={handleClick}>
+        <Icon/>
+        <ListItemText primary={props.title}/>
+        {expand ? <ExpandLess/> : <ExpandMore/>}
+      </ListItem>
+      <Collapse in={expand} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <SubItem/>
+        </List>
+      </Collapse>
+    </div>
+  )
+}
+
+const Menu = () => {
+  const classes = useStyles()
+  const Item = () => {
+    return menus.map(item => {
+      if (item.children) {
+        return <ExpandItem key={item.path} {...item} />
+      }
+      return <LinkItem key={item.path} {...item}/>
+    })
+  }
+  return (
+    <List component="div" className={classes.root}>
+      <Item/>
+    </List>
+  )
+}
 
 export default Menu
