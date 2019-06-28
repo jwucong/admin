@@ -10,18 +10,24 @@ const getAsyncView = path => {
 	return importedComponent(() => import(`../views/${path}`));
 };
 
-const Layout = getAsyncComponent('Layout');
+const Layout = getAsyncComponent('layout');
 const SignIn = getAsyncComponent('signIn');
 const SignUp = getAsyncComponent('SignUp');
-const NotFound = getAsyncComponent('NotFound');
+const NotFound = getAsyncComponent('notFound');
 
 const Home = getAsyncView('home');
 const About = getAsyncView('about');
 const Contact = getAsyncView('contact');
 const Article = getAsyncView('article');
+const Dashboard = getAsyncView('dashboard');
+const UserManage = getAsyncView('userManage');
+const ArticleManage = getAsyncView('articleManage');
+const CategoryManage = getAsyncView('categoryManage');
+const TagManage = getAsyncView('tagManage');
+const SystemLogs = getAsyncView('systemLogs');
 
 const notFoundRoute = {
-	key: 'TO-NOT-FOUND-ROUTE',
+	key: 'NOT-FOUND-ROUTE',
 	to: '/404'
 };
 
@@ -45,8 +51,8 @@ const layoutRoutes = [
 		exact: true
 	},
   {
-    key: '/article:id',
-    path: '/article:id',
+    key: '/article/:id',
+    path: '/article/:id',
     component: Article,
     // exact: true
   },
@@ -65,23 +71,41 @@ const layoutRoutes = [
 
 const viewRoutes = [
 	{
-		key: '/view/home',
-		path: '/view/home',
-		component: Home,
+		key: '/view/dashboard',
+		path: '/view/dashboard',
+		component: Dashboard,
 		exact: true
 	},
 	{
-		key: '/view/about',
-		path: '/view/about',
-		component: About,
+		key: '/view/userManage',
+		path: '/view/userManage',
+		component: UserManage,
 		exact: true
 	},
 	{
-		key: '/view/contact',
-		path: '/view/contact',
-		component: Contact,
+		key: '/view/articleManage',
+		path: '/view/articleManage',
+		component: ArticleManage,
 		exact: true
-	}
+	},
+  {
+		key: '/view/categoryManage',
+		path: '/view/categoryManage',
+		component: CategoryManage,
+		exact: true
+	},
+  {
+    key: '/view/tagManage',
+    path: '/view/tagManage',
+    component: TagManage,
+    exact: true
+  },
+  {
+    key: '/view/systemLogs',
+    path: '/view/systemLogs',
+    component: SystemLogs,
+    exact: true
+  }
 ].concat(notFoundRoute);
 
 const createRouter = routes => {

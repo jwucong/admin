@@ -7,8 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import './Header.scss'
-import Menu from "../menu";
+import './header.scss'
 
 
 export default class Header extends React.Component {
@@ -28,7 +27,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <div className='header'>
-        <AppBar position="fixed">
+        <AppBar position="fixed" component='div'>
           <Toolbar variant="dense">
             <IconButton
               edge="start"
@@ -49,7 +48,6 @@ export default class Header extends React.Component {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Menu show={this.state.show} toggle={this.handleToggleMenu} />
       </div>
     )
   }

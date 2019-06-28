@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import classnames from 'classnames'
+import {dateFormatter} from "../../utils";
 import './home.scss'
 
 const colors = [
@@ -59,7 +60,9 @@ export default class Home extends React.Component {
                 <div className="text">
                   <h3 className="title">{image.title}</h3>
                   <p className="subtitle">{image.subtitle}</p>
-                  <div className='date'>{image.updateTime}</div>
+                  <div className='date'>
+                    {dateFormatter(image.updateTime, 'yyyy-MM-dd')}
+                  </div>
                 </div>
               </div>
               <div className="arrow"></div>

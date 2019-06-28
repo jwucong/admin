@@ -1,4 +1,5 @@
 
 export default ({match}) => {
-  return <div>{match}</div>
+  const {id} = match.params
+  return <div>{id}</div>
 }
