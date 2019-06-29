@@ -1,20 +1,41 @@
 .menu {
 
   .level1 {
-    padding-left: 24px;
+    .nav-item {
+      padding-left: 24px;
+    }
   }
-  .nav-active {
-    .level1 {
+
+  .level2 {
+    .nav-item {
+      padding-left: 45px;
+    }
+  }
+
+  .level3 {
+    .nav-item {
+      padding-left: 66px;
+    }
+  }
+
+  .nav-link {
+    display: block;
+    &.active {
       color: #fff;
       background-color: #1976d2;
-    }
-    .nav-icon {
-      color: #fff;
+
+      .nav-icon {
+        color: #fff;
+      }
     }
   }
+
   .nav-icon {
     min-width: unset;
+    margin-right: 5px;
+    color: inherit;
   }
+
   .nav-text {
     margin-left: 15px;
   }

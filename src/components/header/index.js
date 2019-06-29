@@ -10,18 +10,21 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import './header.scss'
 
 
+
 export default class Header extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      show: false
-    }
   }
 
-  handleToggleMenu = () => {
-    const show = !this.state.show
-    this.setState({show})
-    console.log(show)
+  navToPersonalCenter = () => {
+    const isLogin = false
+    const path = isLogin ? '/view/personal' : '/signin'
+    console.log(this.props)
+    this.props.history.push(path)
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return false
   }
 
   render() {
@@ -32,19 +35,15 @@ export default class Header extends React.Component {
             <IconButton
               edge="start"
               color="inherit">
-              <AccountCircle />
+              <MenuIcon />
             </IconButton>
-            <IconButton color="inherit">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton className='to-right' color="inherit">
+              <Badge badgeContent={7} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              className='menu-btn'
-              edge="end"
-              color="inherit"
-              onClick={this.handleToggleMenu}>
-              <MenuIcon />
+            <IconButton color="inherit" onClick={this.navToPersonalCenter}>
+              <AccountCircle />
             </IconButton>
           </Toolbar>
         </AppBar>

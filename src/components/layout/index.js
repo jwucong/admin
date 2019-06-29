@@ -12,14 +12,18 @@ export default class Layout extends React.Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return false
+  }
+
   render() {
     console.log('layout render...')
     return (
       <div className='layout'>
-        <Header></Header>
+        <Header {...this.props}></Header>
         <div className="body">
           <div className="sidebar">
-            <Menu />
+            <Menu {...this.props} />
           </div>
           <div className="main-view">
             <ViewRouter></ViewRouter>

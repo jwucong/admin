@@ -17,7 +17,7 @@ export default function NotFound() {
         </div>
       </div>
       <div className='btn'>
-        <Link to='/view/home'>
+        <Link to='/'>
           <div className='pink'>Back T</div>
           <div className='white'>o Home</div>
         </Link>

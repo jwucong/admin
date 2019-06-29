@@ -20,11 +20,11 @@ export default class SignIn extends React.Component {
 
   handleSignIn() {
     const { history } = this.props;
-    history.push('/view3/home');
+    history.push('/');
   }
 
   handleSignUp() {
     const { history } = this.props;
-    history.push('/signUp');
+    history.push('/signup');
   }
 }

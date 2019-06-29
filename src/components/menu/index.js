@@ -1,100 +1,91 @@
 import React from 'react';
-import classNames from 'classNames'
-import {Link, NavLink} from 'react-router-dom';
-import menus from './config';
-
-import {makeStyles} from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import {NavLink, withRouter} from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+import menus from './config';
 import './menu.scss'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 200,
-    backgroundColor: '#fff',
-  },
-}));
-
 const Icon = props => {
-  if (!props.icon) {
+  const ItemIcon = props.icon
+  if (!ItemIcon) {
     return null
   }
   return (
     <ListItemIcon className='nav-icon'>
-      {props.icon}
+      <ItemIcon />
     </ListItemIcon>
   )
 }
 
-const LinkItem = props => {
+const Item = props => {
   return (
-    <div className='menu-item'>
-      <NavLink to={props.path}>
-        <ListItem button>
-          <Icon/>
-          <ListItemText primary={props.title}/>
-        </ListItem>
-      </NavLink>
-    </div>
+    <ListItem button className='nav-item' onClick={props.onClick}>
+      <Icon icon={props.icon}/>
+      <ListItemText primary={props.title}/>
+      {props.children}
+    </ListItem>
   )
 }
 
-const ExpandItem = props => {
-  const [expand, toggleExpand] = React.useState(false);
-  const handleClick = (event) => {
-    event.persist()
-    event.stopPropagation()
-    console.log(event)
-    toggleExpand(!expand)
-  };
-  const SubItem = () => {
-    return props.children.map(item => {
-      if (item.children) {
-        return <ExpandItem key={item.path} {...item} />
-      }
-      return <LinkItem key={item.path} {...item}/>
-    })
+const MenuItem = props => {
+  const list = props.children
+  const level = props.level || 1
+  const hasSubmenu = Array.isArray(list) && list.length > 0
+  const Container = props => {
+    const classList = `menu-item level${level}`
+    return <div className={classList}>{props.children}</div>
   }
+  if (!hasSubmenu) {
+    return (
+      <Container>
+        <NavLink
+          className='nav-link'
+          activeClassName='active'
+          to={props.path}>
+          <Item icon={props.icon} title={props.title}/>
+        </NavLink>
+      </Container>
+    )
+  }
+
+  const active = list.some(item => props.location.pathname === item.path)
+  const [expand, setExpand] = React.useState(active);
+  const toggleExpand = () => setExpand(!expand)
+  const MenuItemWithRouter = withRouter(MenuItem)
+  const Submenu = () => list.map(item => {
+    return <MenuItemWithRouter level={level + 1} key={item.path} {...item} />
+  })
+
   return (
-    <div className='menu-item'>
-      <ListItem button onClick={handleClick}>
-        <Icon/>
-        <ListItemText primary={props.title}/>
+    <Container>
+      <Item
+        icon={props.icon}
+        title={props.title}
+        onClick={toggleExpand}>
         {expand ? <ExpandLess/> : <ExpandMore/>}
-      </ListItem>
-      <Collapse in={expand} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <SubItem/>
+      </Item>
+      <Collapse in={expand} timeout={650}>
+        <List component="div">
+          <Submenu />
         </List>
       </Collapse>
-    </div>
+    </Container>
   )
 }
 
 const Menu = () => {
-  const classes = useStyles()
-  const Item = () => {
-    return menus.map(item => {
-      if (item.children) {
-        return <ExpandItem key={item.path} {...item} />
-      }
-      return <LinkItem key={item.path} {...item}/>
-    })
-  }
+  const MenuItemWithRouter = withRouter(MenuItem)
+  const Submenu = () => menus.map(item => {
+    return <MenuItemWithRouter key={item.path} {...item}/>
+  })
   return (
-    <List component="div" className={classes.root}>
-      <Item/>
+    <List component="div" className='menu'>
+      <Submenu />
     </List>
   )
 }
