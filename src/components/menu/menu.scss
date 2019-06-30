@@ -21,11 +21,11 @@
   .nav-link {
     display: block;
     &.active {
-      color: #fff;
-      background-color: #1976d2;
+      color: #1976d2;
+      //background-color: #1976d2;?
 
       .nav-icon {
-        color: #fff;
+        color: #1976d2;
       }
     }
   }

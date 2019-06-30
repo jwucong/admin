@@ -1,12 +1,13 @@
 import React from 'react';
 import {NavLink, withRouter} from 'react-router-dom';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Collapse
+} from '@material-ui/core';
+import {ExpandLess, ExpandMore} from '@material-ui/icons';
 import menus from './config';
 import './menu.scss'
 
@@ -69,7 +70,7 @@ const MenuItem = props => {
         onClick={toggleExpand}>
         {expand ? <ExpandLess/> : <ExpandMore/>}
       </Item>
-      <Collapse in={expand} timeout={650}>
+      <Collapse in={expand} timeout={1000}>
         <List component="div">
           <Submenu />
         </List>

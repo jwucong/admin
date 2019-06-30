@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,44 +11,34 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import './header.scss'
 
 
-
-export default class Header extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  navToPersonalCenter = () => {
+const Header = props => {
+  const navToPersonalCenter = () => {
     const isLogin = false
     const path = isLogin ? '/view/personal' : '/signin'
-    console.log(this.props)
-    this.props.history.push(path)
+    props.history.push(path)
   }
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return false
-  }
-
-  render() {
-    return (
-      <div className='header'>
-        <AppBar position="fixed" component='div'>
-          <Toolbar variant="dense">
-            <IconButton
-              edge="start"
-              color="inherit">
-              <MenuIcon />
-            </IconButton>
-            <IconButton className='to-right' color="inherit">
-              <Badge badgeContent={7} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton color="inherit" onClick={this.navToPersonalCenter}>
-              <AccountCircle />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </div>
-    )
-  }
+  return (
+    <div className='header'>
+      <AppBar position="fixed" component='div'>
+        <Toolbar variant="dense">
+          <IconButton
+            edge="start"
+            color="inherit">
+            <MenuIcon/>
+          </IconButton>
+          <IconButton className='to-right' color="inherit">
+            <Badge badgeContent={7} color="secondary">
+              <NotificationsIcon/>
+            </Badge>
+          </IconButton>
+          <IconButton color="inherit" onClick={navToPersonalCenter}>
+            <AccountCircle/>
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
+  )
 }
+
+
+export default withRouter(Header)
